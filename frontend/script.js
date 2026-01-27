@@ -1,17 +1,34 @@
+/* ============================
+   ELEMENTS
+============================ */
+
 const chatBox = document.getElementById("chatBox");
 const status = document.getElementById("status");
 const typing = document.getElementById("typing");
+
 const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("fileInput");
+
 const docInfo = document.getElementById("docInfo");
 const docNameEl = document.getElementById("docName");
+
 const activeDoc = document.getElementById("activeDoc");
 const activeDocName = document.getElementById("activeDocName");
+
 const uploadText = document.getElementById("uploadText");
 
-/* =========================
+
+/* ============================
+   BACKEND URL (Hugging Face)
+============================ */
+
+const BACKEND_URL =
+  "https://Mahil27-ai-document-assistant.hf.space";
+
+
+/* ============================
    DRAG & DROP + FILE SELECT
-========================= */
+============================ */
 
 // Click to browse
 dropZone.onclick = () => fileInput.click();
@@ -36,41 +53,62 @@ dropZone.addEventListener("drop", e => {
 
   if (fileInput.files.length > 0) {
     const file = fileInput.files[0];
+
     uploadText.innerText = "File selected ✔";
 
-    // ✅ SHOW FILE NAME IMMEDIATELY
+    // ✅ Show file name instantly
     docNameEl.innerText = file.name;
     docInfo.classList.remove("hidden");
   }
 });
 
-// Browse PDF selection
+// Browse selection
 fileInput.addEventListener("change", () => {
   if (fileInput.files.length > 0) {
     const file = fileInput.files[0];
+
     uploadText.innerText = "File selected ✔";
 
-    // ✅ SHOW FILE NAME IMMEDIATELY
+    // ✅ Show file name instantly
     docNameEl.innerText = file.name;
     docInfo.classList.remove("hidden");
   }
 });
 
-/* =========================
+
+/* ============================
    ASSISTANT FORMATTING
-========================= */
+============================ */
 
 function formatAssistant(text) {
   let html = text;
 
+  // Headings
   html = html.replace(/\*\*(.+?)\*\*/g, "<h2 class='ans-heading'>$1</h2>");
+
+  // Bullet points
   html = html.replace(/• (.+)/g, "<li>$1</li>");
   html = html.replace(/- (.+)/g, "<li>$1</li>");
+
+  // Wrap list items inside <ul>
   html = html.replace(/(<li>.*<\/li>)/gs, "<ul class='ans-list'>$1</ul>");
-  html = html.replace(/INR\s?[0-9,]+\/-/g, "<span class='highlight'>$&</span>");
+
+  // Highlight currency/numbers
+  html = html.replace(
+    /INR\s?[0-9,]+\/-/g,
+    "<span class='highlight'>$&</span>"
+  );
+
+  // Line breaks for readability
+  html = html.replace(/\n/g, "<br>");
 
   return html;
 }
+
+
+/* ============================
+   CHAT UI HELPERS
+============================ */
 
 function addUser(text) {
   const d = document.createElement("div");
@@ -86,61 +124,69 @@ function addBot(text) {
   const source = activeDocName.innerText || "Uploaded Document";
 
   d.innerHTML = `
-    <div style="font-size:12px;color:#777;margin-bottom:4px;">
+    <div class="source-line">
       📄 Answer from: <strong>${source}</strong>
     </div>
     ${formatAssistant(text)}
   `;
 
   chatBox.appendChild(d);
+
+  // Auto scroll
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* =========================
+
+/* ============================
    UPLOAD DOCUMENT
-========================= */
+============================ */
 
 async function uploadFile() {
   const file = fileInput.files[0];
 
   if (!file) {
-    status.innerText = "Please select a document.";
+    status.innerText = "❌ Please select a PDF document.";
     status.className = "status error";
     return;
   }
 
-  status.innerText = "Processing document...";
+  status.innerText = "⏳ Processing document...";
   status.className = "status";
 
   const fd = new FormData();
   fd.append("file", file);
 
   try {
-    const res = await fetch("http://localhost:8000/upload", {
+    const res = await fetch(`${BACKEND_URL}/upload`, {
       method: "POST",
       body: fd
     });
 
+    if (!res.ok) throw new Error("Upload failed");
+
     const data = await res.json();
 
-    // Backend-confirmed document name
+    // Show uploaded doc name
     docNameEl.innerText = data.document_name || file.name;
     docInfo.classList.remove("hidden");
 
+    // Show active doc name in chat
     activeDocName.innerText = data.document_name || file.name;
     activeDoc.classList.remove("hidden");
 
     chatBox.innerHTML = "";
-    status.innerText = "Document indexed successfully ✅";
-
+    status.innerText = "✅ Document indexed successfully!";
   } catch (err) {
-    status.innerText = "Indexing failed. Please try again.";
+    console.error(err);
+    status.innerText = "❌ Upload failed. Try again.";
     status.className = "status error";
   }
 }
 
-/* =========================
-   CHAT
-========================= */
+
+/* ============================
+   SEND CHAT MESSAGE
+============================ */
 
 async function sendMessage() {
   const qInput = document.getElementById("question");
@@ -150,24 +196,25 @@ async function sendMessage() {
 
   addUser(q);
   qInput.value = "";
+
   typing.classList.remove("hidden");
 
   try {
-    const res = await fetch("http://localhost:8000/chat", {
+    const res = await fetch(`${BACKEND_URL}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: q })
     });
 
+    if (!res.ok) throw new Error("Chat failed");
+
     const data = await res.json();
+
     typing.classList.add("hidden");
-
     addBot(data.answer);
-
   } catch (err) {
+    console.error(err);
     typing.classList.add("hidden");
     addBot("❌ Unable to get response. Please try again.");
   }
-
-  chatBox.scrollTop = chatBox.scrollHeight;
 }
