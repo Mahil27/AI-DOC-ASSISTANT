@@ -1,10 +1,8 @@
 fastapi
 uvicorn
-python-multipart
-python-dotenv
-pydantic
-PyPDF2
-python-docx
 sentence-transformers
 faiss-cpu
+numpy
+pypdf
+python-multipart
 groq
