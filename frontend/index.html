@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DocAI – Document Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1 class="logo">DocAI</h1>
+    <p class="tagline">Smart Document Intelligence</p>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <header class="header">
+      <h2>Document Assistant</h2>
+      <p>Upload a PDF and extract insights instantly</p>
+    </header>
+
+    <div class="content">
+
+      <!-- Upload Card -->
+      <div class="card upload-card">
+        <h3>Upload Document</h3>
+
+        <div id="dropZone" class="upload-box">
+          <div class="upload-icon">📄</div>
+          <p id="uploadText">Drag & Drop or <span>Browse PDF</span></p>
+          <input type="file" id="fileInput" hidden />
+        </div>
+
+        <!-- ✅ SINGLE document info block -->
+        <div id="docInfo" class="doc-info hidden">
+          <span class="doc-label">📄 Uploaded Document</span>
+          <div id="docName" class="doc-name"></div>
+        </div>
+
+        <button class="process-btn" onclick="uploadFile()">Process</button>
+        <p id="status" class="status"></p>
+      </div>
+
+      <!-- Chat Card -->
+      <div class="card chat-card">
+        <h3>Ask Questions</h3>
+
+        <!-- ✅ SINGLE active document indicator -->
+        <div id="activeDoc" class="active-doc hidden">
+          Answering from: <strong id="activeDocName"></strong>
+        </div>
+
+        <div id="chatBox" class="chat-box">
+          <p class="placeholder">Upload a document to begin asking questions...</p>
+        </div>
+
+        <div id="typing" class="typing hidden">
+          Assistant is thinking<span>.</span><span>.</span><span>.</span>
+        </div>
+
+        <div class="chat-input">
+          <input id="question" placeholder="Ask about clauses, skills, summaries..." />
+          <button onclick="sendMessage()">Ask</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
