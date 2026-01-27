@@ -14,6 +14,15 @@ from app.config import EMBEDDING_MODEL
 # =========================
 
 app = FastAPI()
+@app.get("/")
+def home():
+    return {
+        "message": "✅ DocAI Backend is running successfully!",
+        "endpoints": {
+            "upload": "/upload",
+            "chat": "/chat"
+        }
+    }
 
 # =========================
 # CORS (REQUIRED FOR FRONTEND)
