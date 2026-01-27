@@ -1,38 +1,16 @@
-# =========================
-# Python
-# =========================
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
-# Virtual environment
+# Python venv
 venv/
-env/
-ENV/
+backend/venv/
 
-# Environment variables
-.env
+# Env secrets
+backend/.env
 
-# =========================
-# Uploads / Generated Files
-# =========================
+# Uploaded files
 backend/uploads/
 
-# =========================
-# OS / Editor
-# =========================
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# =========================
-# Logs
-# =========================
-*.log
-
-# =========================
-# Node (just in case)
-# =========================
-node_modules/
+# Cache
+__pycache__/
+*.pyc
+*.pyd
+*.dll
+*.so
