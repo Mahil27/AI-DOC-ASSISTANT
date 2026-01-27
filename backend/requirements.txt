@@ -1,8 +1,10 @@
 fastapi
 uvicorn
-sentence-transformers
+PyPDF2
 faiss-cpu
-numpy
-pypdf
-python-multipart
+sentence-transformers
 groq
+numpy
+python-multipart
+PyPDF2
+PyPDF2==3.0.1
