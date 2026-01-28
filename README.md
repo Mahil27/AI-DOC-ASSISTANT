@@ -1,38 +1,122 @@
-📄 AI Document Assistant (DocAI)
+# 📄 DocAI — AI Document Assistant  
 
-AI Document Assistant is a smart web-based application that allows users to upload documents (PDF/DOCX) and instantly ask questions about them using AI-powered document understanding.
+A professional **AI-powered Document Assistant Website** that allows users to upload any document (PDF/DOCX) and instantly chat with it using advanced NLP + Retrieval Augmented Generation (RAG).
 
-This project combines:
+---
 
-🌐 Frontend deployed on GitHub Pages
+## 🌟 Live Project Links  
 
-⚡ FastAPI Backend deployed on Hugging Face Spaces
+### ✅ Frontend (GitHub Pages)  
+🔗 https://mahil27.github.io/AI-DOC-ASSISTANT/
 
-🤖 AI embeddings + retrieval-based question answering
+### ✅ Backend API (Hugging Face Spaces)  
+🔗 https://Mahil27-ai-document-assistant.hf.space/docs  
 
-🚀 Live Demo
-✅ Frontend (GitHub Pages)
+---
 
-👉 https://mahil27.github.io/AI-DOC-ASSISTANT/
+## 🚀 What is DocAI?
 
-✅ Backend API (Hugging Face)
+DocAI is built to help companies and individuals quickly extract insights from documents such as:
 
-👉 https://Mahil27-ai-document-assistant.hf.space/docs
+- 📑 Resume & CVs  
+- 🏥 Medical Reports  
+- 💰 Financial Statements  
+- 📃 Offer Letters & Contracts  
+- 📚 Any PDF/DOCX document  
 
-✨ Features
+Upload → Ask Questions → Get Accurate Answers.
 
-📂 Upload PDF or DOCX documents
+---
 
-🔍 Automatic text extraction & indexing
+## ✨ Key Features  
 
-💬 Ask questions directly from the uploaded document
+✅ Upload PDF/DOCX documents  
+✅ AI chatbot answers only from uploaded document  
+✅ RAG-based document search (No hallucination)  
+✅ Clean ChatGPT-style UI  
+✅ Shows active uploaded document name  
+✅ Fast embeddings + retrieval using FAISS  
+✅ Fully deployed online (Frontend + Backend)
 
-📌 Answers formatted with headings and bullet points
+---
 
-🌍 Fully deployed online (no local setup required)
+## 🧠 AI Working Pipeline  
 
-🛠 Tech Stack
-Frontend
+```text
+Document Upload  
+      ↓  
+Text Extraction (PDF/DOCX)  
+      ↓  
+Chunking + Embeddings  
+      ↓  
+FAISS Vector Index  
+      ↓  
+User Question  
+      ↓  
+Relevant Context Retrieval  
+      ↓  
+LLM Answer Generation (Grounded Response)
+
+# 📄 DocAI — AI Document Assistant  
+
+A professional **AI-powered Document Assistant Website** that allows users to upload any document (PDF/DOCX) and instantly chat with it using advanced NLP + Retrieval Augmented Generation (RAG).
+
+---
+
+## 🌟 Live Project Links  
+
+### ✅ Frontend (GitHub Pages)  
+🔗 https://mahil27.github.io/AI-DOC-ASSISTANT/
+
+### ✅ Backend API (Hugging Face Spaces)  
+🔗 https://Mahil27-ai-document-assistant.hf.space/docs  
+
+---
+
+## 🚀 What is DocAI?
+
+DocAI is built to help companies and individuals quickly extract insights from documents such as:
+
+- 📑 Resume & CVs  
+- 🏥 Medical Reports  
+- 💰 Financial Statements  
+- 📃 Offer Letters & Contracts  
+- 📚 Any PDF/DOCX document  
+
+Upload → Ask Questions → Get Accurate Answers.
+
+---
+
+## ✨ Key Features  
+
+✅ Upload PDF/DOCX documents  
+✅ AI chatbot answers only from uploaded document  
+✅ RAG-based document search (No hallucination)  
+✅ Clean ChatGPT-style UI  
+✅ Shows active uploaded document name  
+✅ Fast embeddings + retrieval using FAISS  
+✅ Fully deployed online (Frontend + Backend)
+
+---
+
+## 🧠 AI Working Pipeline  
+
+```text
+Document Upload  
+      ↓  
+Text Extraction (PDF/DOCX)  
+      ↓  
+Chunking + Embeddings  
+      ↓  
+FAISS Vector Index  
+      ↓  
+User Question  
+      ↓  
+Relevant Context Retrieval  
+      ↓  
+LLM Answer Generation (Grounded Response)
+🛠️ Tech Stack
+🎨 Frontend
 
 HTML5
 
@@ -40,84 +124,94 @@ CSS3
 
 JavaScript (Fetch API)
 
-Backend
+⚡ Backend
 
 FastAPI
 
 Uvicorn
 
-PyPDF2 (PDF reader)
+PyPDF2
 
-python-docx (DOCX reader)
+python-docx
 
-Sentence Transformers (Embeddings)
+Sentence Transformers
 
-FAISS (Vector search)
+FAISS Vector Search
 
-Deployment
+🌍 Deployment
 
-GitHub Pages (Frontend)
+GitHub Pages → Frontend Hosting
 
-Hugging Face Spaces (Docker Backend)
- 
-📄 AI Document Assistant (DocAI)
+Hugging Face Spaces → Backend Hosting (Docker)
 
-AI Document Assistant is a smart web-based application that allows users to upload documents (PDF/DOCX) and instantly ask questions about them using AI-powered document understanding.
+🔥 API Endpoints
+Method	Endpoint	Description
+POST	/upload	Upload + Index Document
+POST	/chat	Ask Questions from Document
+GET	/docs	Swagger API Documentation
+🧑‍💻 Run Locally (Optional)
+1️⃣ Backend Setup
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 
-This project combines:
 
-🌐 Frontend deployed on GitHub Pages
+Backend will start at:
 
-⚡ FastAPI Backend deployed on Hugging Face Spaces
+http://127.0.0.1:8000
 
-🤖 AI embeddings + retrieval-based question answering
+2️⃣ Frontend Setup
 
-🚀 Live Demo
-✅ Frontend (GitHub Pages)
+Open directly:
 
-👉 https://mahil27.github.io/AI-DOC-ASSISTANT/
+frontend/index.html
 
-✅ Backend API (Hugging Face)
 
-👉 https://Mahil27-ai-document-assistant.hf.space/docs
+Or use VS Code Live Server.
 
-✨ Features
+🌍 Deployment Guide
+✅ Deploy Frontend on GitHub Pages
 
-📂 Upload PDF or DOCX documents
+Push your code to GitHub
 
-🔍 Automatic text extraction & indexing
+Go to:
 
-💬 Ask questions directly from the uploaded document
+Repo → Settings → Pages
 
-📌 Answers formatted with headings and bullet points
 
-🌍 Fully deployed online (no local setup required)
+Select:
 
-🛠 Tech Stack
-Frontend
+Branch: main
 
-HTML5
+Folder: /root
 
-CSS3
+Save → Website becomes live.
 
-JavaScript (Fetch API)
+✅ Deploy Backend on Hugging Face Spaces
 
-Backend
+Create a Docker Space
 
-FastAPI
+Upload backend code + Dockerfile
 
-Uvicorn
+Push:
 
-PyPDF2 (PDF reader)
+git push hf main
 
-python-docx (DOCX reader)
 
-Sentence Transformers (Embeddings)
+Backend will run at:
 
-FAISS (Vector search)
+https://<username>-<space>.hf.space
 
-Deployment
+⚠️ Important Notes
 
-GitHub Pages (Frontend)
+GitHub Pages never sleeps
 
-Hugging Face Spaces (Docker Backend)
+Hugging Face backend may sleep in free tier
+
+Use monitoring tools like UptimeRobot to keep backend awake
+
+👨‍💻 Author
+Mahil
+
+AI / ML Developer
+Project: DocAI — AI Document Assistant
