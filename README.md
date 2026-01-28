@@ -57,47 +57,6 @@ Relevant Context Retrieval
       ↓  
 LLM Answer Generation (Grounded Response)
 
-# 📄 DocAI — AI Document Assistant  
-
-A professional **AI-powered Document Assistant Website** that allows users to upload any document (PDF/DOCX) and instantly chat with it using advanced NLP + Retrieval Augmented Generation (RAG).
-
----
-
-## 🌟 Live Project Links  
-
-### ✅ Frontend (GitHub Pages)  
-🔗 https://mahil27.github.io/AI-DOC-ASSISTANT/
-
-### ✅ Backend API (Hugging Face Spaces)  
-🔗 https://Mahil27-ai-document-assistant.hf.space/docs  
-
----
-
-## 🚀 What is DocAI?
-
-DocAI is built to help companies and individuals quickly extract insights from documents such as:
-
-- 📑 Resume & CVs  
-- 🏥 Medical Reports  
-- 💰 Financial Statements  
-- 📃 Offer Letters & Contracts  
-- 📚 Any PDF/DOCX document  
-
-Upload → Ask Questions → Get Accurate Answers.
-
----
-
-## ✨ Key Features  
-
-✅ Upload PDF/DOCX documents  
-✅ AI chatbot answers only from uploaded document  
-✅ RAG-based document search (No hallucination)  
-✅ Clean ChatGPT-style UI  
-✅ Shows active uploaded document name  
-✅ Fast embeddings + retrieval using FAISS  
-✅ Fully deployed online (Frontend + Backend)
-
-
 🛠️ Tech Stack
 🎨 Frontend
 
