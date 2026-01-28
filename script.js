@@ -27,6 +27,22 @@ const BACKEND_URL =
 
 
 /* ============================
+   AUTO WAKE BACKEND (IMPORTANT)
+   This helps when backend sleeps
+============================ */
+
+window.onload = async () => {
+  try {
+    // Ping docs (since you want docs only)
+    await fetch(`${BACKEND_URL}/docs`);
+    console.log("Backend is awake ✅");
+  } catch (err) {
+    console.log("Backend sleeping or starting ❌");
+  }
+};
+
+
+/* ============================
    DRAG & DROP + FILE SELECT
 ============================ */
 
@@ -56,7 +72,7 @@ dropZone.addEventListener("drop", e => {
 
     uploadText.innerText = "File selected ✔";
 
-    // ✅ Show file name instantly
+    // Show file name instantly
     docNameEl.innerText = file.name;
     docInfo.classList.remove("hidden");
   }
@@ -69,7 +85,7 @@ fileInput.addEventListener("change", () => {
 
     uploadText.innerText = "File selected ✔";
 
-    // ✅ Show file name instantly
+    // Show file name instantly
     docNameEl.innerText = file.name;
     docInfo.classList.remove("hidden");
   }
@@ -99,7 +115,7 @@ function formatAssistant(text) {
     "<span class='highlight'>$&</span>"
   );
 
-  // Line breaks for readability
+  // Line breaks
   html = html.replace(/\n/g, "<br>");
 
   return html;
@@ -170,7 +186,7 @@ async function uploadFile() {
     docNameEl.innerText = data.document_name || file.name;
     docInfo.classList.remove("hidden");
 
-    // Show active doc name in chat
+    // Active doc name in chat
     activeDocName.innerText = data.document_name || file.name;
     activeDoc.classList.remove("hidden");
 
@@ -212,6 +228,7 @@ async function sendMessage() {
 
     typing.classList.add("hidden");
     addBot(data.answer);
+
   } catch (err) {
     console.error(err);
     typing.classList.add("hidden");
