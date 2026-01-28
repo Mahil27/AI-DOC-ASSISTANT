@@ -38,24 +38,6 @@ Upload → Ask Questions → Get Accurate Answers.
 ✅ Fast embeddings + retrieval using FAISS  
 ✅ Fully deployed online (Frontend + Backend)
 
----
-
-## 🧠 AI Working Pipeline  
-
-```text
-Document Upload  
-      ↓  
-Text Extraction (PDF/DOCX)  
-      ↓  
-Chunking + Embeddings  
-      ↓  
-FAISS Vector Index  
-      ↓  
-User Question  
-      ↓  
-Relevant Context Retrieval  
-      ↓  
-LLM Answer Generation (Grounded Response)
 
 🛠️ Tech Stack
 🎨 Frontend
