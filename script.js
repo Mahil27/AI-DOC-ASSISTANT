@@ -23,7 +23,7 @@ const uploadText = document.getElementById("uploadText");
 ============================ */
 
 const BACKEND_URL =
-  "https://Mahil27-ai-document-assistant.hf.space";
+  "https://Mahil27-ai-document-assistant.hf.space/";
 
 
 /* ============================
@@ -34,7 +34,8 @@ const BACKEND_URL =
 window.onload = async () => {
   try {
     // Ping docs (since you want docs only)
-    await fetch(`${BACKEND_URL}/docs`);
+    await fetch(`${BACKEND_URL}`);
+
     console.log("Backend is awake ✅");
   } catch (err) {
     console.log("Backend sleeping or starting ❌");
@@ -173,10 +174,15 @@ async function uploadFile() {
   fd.append("file", file);
 
   try {
-    const res = await fetch(`${BACKEND_URL}/upload`, {
+    const res = await fetch(`${BACKEND_URL}upload`, {
       method: "POST",
+      mode: "cors",
+      headers: {
+        "Accept": "application/json"
+      },
       body: fd
     });
+
 
     if (!res.ok) throw new Error("Upload failed");
 
@@ -216,8 +222,9 @@ async function sendMessage() {
   typing.classList.remove("hidden");
 
   try {
-    const res = await fetch(`${BACKEND_URL}/chat`, {
+    const res = await fetch(`${BACKEND_URL}chat`, {
       method: "POST",
+      mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: q })
     });

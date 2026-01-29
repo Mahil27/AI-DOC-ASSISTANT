@@ -61,28 +61,30 @@ def chunk_text(text, size=500):
 
 @app.post("/upload")
 async def upload_document(file: UploadFile = File(...)):
-    global chat_history
+    global chat_history, vector_store
 
     # reset chat history for new document
     chat_history = []
 
-    # save uploaded file
+    # save uploaded file (mobile friendly)
     file_path = os.path.join(UPLOAD_DIR, file.filename)
+
     with open(file_path, "wb") as f:
-        f.write(await file.read())
+        while True:
+            chunk = await file.read(1024 * 1024)
+            if not chunk:
+                break
+            f.write(chunk)
 
     # load & process document
     text = load_document(file_path)
     chunks = chunk_text(text)
 
+    # reset vector store for new document
+    vector_store = VectorStore(EMBEDDING_MODEL)
+
     # build vector index
     vector_store.build(chunks)
-
-    # logs for debugging
-    print("✅ DOCUMENT INDEXED")
-    print(f"✅ Document name: {file.filename}")
-    print(f"✅ Total chunks: {len(chunks)}")
-    print(f"✅ Index exists? {vector_store.index is not None}")
 
     return {
         "message": "Document uploaded and indexed successfully",
