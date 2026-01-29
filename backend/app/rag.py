@@ -36,14 +36,13 @@ FORMATTING & READABILITY (VERY IMPORTANT):
 - ALWAYS use bullet points.
 - Each bullet point must contain ONLY ONE idea.
 - Do NOT combine multiple facts in a single bullet.
-- Each bullet should be 1–2 lines maximum.
 - Leave clear line breaks between bullets.
-- NEVER write dense or paragraph-style bullets.
 - Use **bold headings** for each section.
 
 SPECIAL INSTRUCTION:
 - If the user asks for judgment or evaluation (e.g., good/bad, safe/risky, strict/lenient),
   present the answer as a clean checklist-style bullet list.
+- If the user question asks to answer in detail or depth or short , act according to users demand.
 """
 
 
@@ -73,7 +72,6 @@ USER QUESTION:
 INSTRUCTIONS:
 - Answer only from the document.
 - Use structured bullet points.
-- Add short factual explanations where possible.
 """
     })
 
