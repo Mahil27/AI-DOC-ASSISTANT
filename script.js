@@ -177,14 +177,19 @@ async function uploadFile() {
     const res = await fetch(`${BACKEND_URL}upload`, {
       method: "POST",
       mode: "cors",
+      credentials: "omit",   // ✅ FIX 5: Important for mobile browsers
       headers: {
-        "Accept": "application/json"
-      },
-      body: fd
-    });
+      "Accept": "application/json"
+     },
+    body: fd
+  });
 
-
-    if (!res.ok) throw new Error("Upload failed");
+    
+    if (!res.ok) {
+      const errText = await res.text();
+      console.log("UPLOAD ERROR:", errText);
+      throw new Error(errText);
+      }
 
     const data = await res.json();
 
